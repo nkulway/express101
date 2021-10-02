@@ -1,5 +1,6 @@
 const http = require('http')
 const express = require('express')
+const data = require('./data')
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -12,8 +13,9 @@ app.get('/', (req, res) => {
     res.send('Hello World')
 })
 
-app.get('/pancake', (req, res) => {
-    res.send('<h1>Hello Pancake</h1>')
+app.get('/:handle', (req, res) => {
+    console.log(req.params.handle)
+    res.send('hello')
 })
 
 app.get('*', (req, res) => {

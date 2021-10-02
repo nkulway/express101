@@ -9,13 +9,40 @@ const app = express()
 
 const server = http.createServer(app)
 
+app.get("/favicon.ico", (req, res) => {
+    res.send("")
+})
+
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    // set up html string, start with ul
+    let html = '<ul>'
+    // for each iteem in the data array
+    for (let i = 0; i < data.length; i++){
+        // add more html (li & a tags) to the html string
+        html += `<li><a href="/${data[i].handle}">${data[i].name}</a></li>`
+    }
+    // finish with the closing ul tag
+    html += '</ul>'
+    // send back a response with thee build html string
+    res.send(html)
 })
 
 app.get('/:handle', (req, res) => {
-    console.log(req.params.handle)
-    res.send('hello')
+    //find method takes a function which recieves one item at a time
+    const food = data.find((profile) => {
+        // when we return true, stop looking bc we've found the item
+        //if current profile's "handle" property has same value as
+        //the one in the "handle" param that is in the url, return true
+        return profile.handle === req.params.handle
+    })
+    // if we weree not able to find a food in the data
+    if (!food) {
+        // set the status to 404, and send back error message
+        res.status(404).send('Could not find that food')
+    } else {
+        //otherwise, send back the "profile html" for the food
+    res.send(`<h1>${food.name}</h1><h4>${food.handle}</h4>`)
+    }
 })
 
 app.get('*', (req, res) => {

@@ -6,6 +6,14 @@ const data = [
     {
         name: "English Muffin",
         handle: "engmuff"
+    },
+    {
+        name: "Chicken & Waffles",
+        handle: "wafflechick"
+    },
+    {
+        name: "Bacon & Eggs",
+        handle: "b&e"
     }
 ];
 

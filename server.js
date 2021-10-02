@@ -2,6 +2,7 @@ const http = require('http')
 const express = require('express')
 const data = require('./data')
 
+
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -26,6 +27,39 @@ app.get('/', (req, res) => {
     // send back a response with thee build html string
     res.send(html)
 })
+
+app.get('/cats', (req, res) => {
+    res.send('<h1>"Meow!"</h1>')
+})
+
+app.get('/dogs', (req, res) => {
+    res.send('<h1>"Woof!"</h1>')
+})
+
+app.get('/cats_and_dogs', (req, res) => {
+    res.send('<h1>"Dogs and cats living together...mass hysteria!"</h1>')
+})
+
+// app.get('/greet/:Luke', (req, res) => { 
+//     res.send(`<h1>Hello Luke!</h1>`)
+// })
+
+
+app.get('/greet/:name', (req, res) => {
+    const {name} = req.params;    
+    res.send(`<h1>Hello ${name}!</h1>`)
+})
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/:handle', (req, res) => {
     //find method takes a function which recieves one item at a time
